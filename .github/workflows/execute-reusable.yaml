@@ -1,11 +1,12 @@
 name: Executa Reusable Workflow
 
-on: push
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  call-workflow:
-    uses: ./.github/workflows/my-reusable.yaml
+  call-reusable-workflow:
+    uses: alexdesouzasilva/reusables/.github/workflows/my_reusable_workflow.yaml@main
     with:
-      config-path: .github/labeler.yml
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
+      environment: production
