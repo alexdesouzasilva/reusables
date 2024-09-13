@@ -4,7 +4,7 @@ on: push
 
 jobs:
   call-workflow:
-    uses: ./.github/workflows/my-reusable.yaml@v1.3
+    uses: ./.github/workflows/my-reusable.yaml
     with:
       config-path: .github/labeler.yml
     secrets:
