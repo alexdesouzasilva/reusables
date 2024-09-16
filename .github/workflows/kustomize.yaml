@@ -1,0 +1,29 @@
+name: Kustomize
+on:
+    workflow_call:
+        inputs:
+            version:
+                description: 'Versão da nova imagem'
+                default: 'latest'
+                required: true
+                type: string
+
+
+jobs:
+    Build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Version Apply
+              run: echo version is ${{ inputs.version }}
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+            - name: Kustomize
+              uses: imranismail/setup-kustomize@v1
+              with:
+                kustomize_version: v3.6.1
+
+            - name: update k8s
+              run: |
+                cd k8s
+                kustomize edit set image dvop-srv-consult-product=alexsouzasilva/dvop-srv-consult-product:${{ inputs.version }}
+                cat kustomization.yaml
