@@ -1,0 +1,31 @@
+name: Docker
+on:
+    workflow_call:
+        inputs:
+            username:
+                description: 'Doker username'
+                default: ''
+                required: true
+                type: string
+            password:
+                description: 'Docker password'
+                default: ''
+                required: true
+                type: string
+            version:
+                description: 'Version image docker'
+                default: ''
+                required: true
+                type: string
+jobs:
+    Docker-login-build-push:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Docker Build and Push
+              uses: docker/build-push-action@v1.1.0
+              with:
+                username: ${{ inputs.username }}
+                password: ${{ inputs.password }}
+                repository: alexsouzasilva/practice-kube-argo-kust
+                tags: ${{ inputs.password }}, latest
+
