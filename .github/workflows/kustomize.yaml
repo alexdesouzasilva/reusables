@@ -10,7 +10,7 @@ on:
 
 
 jobs:
-    Build:
+    Kustomize:
         runs-on: ubuntu-latest
         steps:
             - name: Version Apply
@@ -27,3 +27,14 @@ jobs:
                 cd k8s
                 kustomize edit set image dvop-srv-consult-product=alexsouzasilva/dvop-srv-consult-product:${{ inputs.version }}
                 cat kustomization.yaml
+
+            - name: Commit
+              run: |
+                git config --local user.email "actions@github"
+                git config --local user.name "deploy actions"
+                git commit -am "change image tag"
+            - name: Push
+              uses: ad-m/github-push-action@master
+              with:
+                github_token: ${{ secrets.GITHUB_TOKEN }}
+                branch: ${{ github.ref }}
