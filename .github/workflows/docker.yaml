@@ -26,6 +26,6 @@ jobs:
               with:
                 username: ${{ inputs.username }}
                 password: ${{ inputs.password }}
-                repository: alexsouzasilva/practice-kube-argo-kust
+                repository: alexsouzasilva/dvop-srv-consult-product
                 tags: ${{ inputs.password }}, latest
 
