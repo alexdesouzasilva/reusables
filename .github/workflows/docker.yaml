@@ -24,10 +24,7 @@ jobs:
             - name: Docker Build and Push
               uses: docker/build-push-action@v1.1.0
               with:
-                username: ${{ inputs.username }}
-                if: ${{ inputs.password }} == ''
-                run: echo "Password vazia"
+                username: alexsouzasilva
                 password: ${{ secrets.DOCKERHUB_TOKEN }}
-                repository: alexsouzasilva/dvop-srv-consult-product
-                tags: ${{ inputs.password }}, latest
+                tags: ${{ inputs.version }}, latest
 
